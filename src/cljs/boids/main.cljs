@@ -3,24 +3,28 @@
             [boids.view :as view]
             [boids.behaviors :as b]))
 
-(defrecord Boid [pos vel])
+(defrecord Boid [pos vel color])
+
+(def colors '("grey" "black" "#cdc9c9" "linen" "gainsboro" "#eed5b7" "#8b7765"))
 
 (defn create-boid
   "Returns a new boid with a random position on the screen."
   []
+  ;;  (.console.log js/window (rand-nth colors))  
   (->Boid [(rand-int (.-innerWidth js/window))
            (rand-int (.-innerHeight js/window))]
-          [0 0]))
+          [0 0]
+          (rand-nth colors)))
 
 (def default-options  {:steer-force      0.1
-                       :max-speed        6
+                       :max-speed        10
                        :cohere-distance  300
                        :avoid-distance   50
                        :align-distance   200
                        :cohesion-weight  1
                        :avoidance-weight 1
                        :alignment-weight 1
-                       :goal-weight      1
+                       :goal-weight      2
                        :goal             [400 400]})
 
 (defn requestAnimationFrame

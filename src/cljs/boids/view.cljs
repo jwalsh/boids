@@ -1,22 +1,21 @@
 (ns boids.view)
 
-
 (defn render-boid
   "Renders a boid, complete with placement and rotation"
   [ctx boid]
   (let [[x y] (:pos boid)
         [dx dy] (:vel boid)
+        color (:color boid)
         angle (Math/atan2 dy dx)]
     (.save ctx)
     (.translate ctx x y)
     (.rotate ctx angle)
     (.beginPath ctx)
-    (.moveTo ctx 5 0) ; tip
-    (.lineTo ctx -5 -3) ; corner
-    (.lineTo ctx -5 3)  ; corner
-    (.lineTo ctx 5 0) ; finish
+    (set! (.-strokeStyle ctx) color)
+    (set! (.-fillStyle ctx) color)
+    (.fillText ctx (.fromCharCode js/String 9992) 5 0) 
     (set! (.-lineWidth ctx) 1)
-    (set! (.-strokeStyle ctx) "black")
+
     (.stroke ctx)
     (.restore ctx)))
 
