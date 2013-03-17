@@ -3,7 +3,6 @@
             [boids.view :as view]
             [boids.behaviors :as b]))
 
-
 (defrecord Boid [pos vel])
 
 (defn create-boid
@@ -36,7 +35,6 @@
    (.mozRequestAnimationFrame js/window callback)
    (.-msRequestAnimationFrame js/window)
    (.msRequestAnimationFrame js/window callback)))
-
 
 (defn acceleration
   "Returns an acceleration vector for the given boid."
@@ -71,9 +69,6 @@
   (swap! flock-atom (partial update-flock @options-atom))
   (requestAnimationFrame #(tick options-atom flock-atom)))
 
-
-
-;; in main.cljs
 (defn main
   "Starts everything"
   []
