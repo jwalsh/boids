@@ -48,14 +48,25 @@
                      (options option-weight-key))))
        (reduce v/add)))
 
+(defn wrap
+  "Ensure the Boids don't leave the screen"
+  [[x y]]
+  (let [w (.-innerWidth js/window)
+        h (.-innerHeight js/window)]
+    [(mod x w) (mod y h)]))
+
 (defn update-boid
   "Given a collection containing the flock and an individual boid,
   return an updated boid, using the provided options."
   [options flock boid]
+  ;;  (.console.log js/window "Main:update-boid")
   (let [desired-velocity (v/add (:vel boid) (acceleration options flock boid))
-        velocity (v/limit desired-velocity (:max-speed options))]
+        velocity (v/limit desired-velocity (:max-speed options))
+        position (v/add (:pos boid) velocity)]
+    
     (assoc boid
-      :pos (v/add (:pos boid) velocity)
+      ;;      :pos (v/add (:pos boid) velocity)
+      :pos (wrap position)
       :vel velocity)))
 
 (defn update-flock
