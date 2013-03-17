@@ -1,18 +1,21 @@
 (defproject boids "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
+  :description "Clojure/West Clojurescript Training Demo"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.0"]
-                 [org.clojure/clojurescript "0.0-1552"]]
+                 [org.clojure/clojurescript "0.0-1552"]
+                 [ring/ring-jetty-adapter "1.1.1"]
+                 [compojure "1.1.5"]]
   :plugins [[lein-cljsbuild "0.3.0"]]
   :hooks [leiningen.cljsbuild]
+  :source-paths ["src/clj"]
+  :main boids.server
   :cljsbuild
   {
    :builds
    [{
      :source-paths ["src/cljs"]
-     
      :compiler
      {
       :optimizations :none
