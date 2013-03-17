@@ -1,0 +1,15 @@
+<html>
+  <head><title>ClojureScript in Development</title></head>
+  <body>
+    <!-- ... application content ... -->
+
+    <!-- Google Closure Base Libraries: -->
+    <script src="build/goog/base.js"></script>
+    <!-- Your :output-to file: -->
+    <script src="build/deps.js"></script>
+    <!-- Require your main namespace: -->
+    <script>goog.require('boids.hello');</script>
+    <!-- Your application's main function: -->
+    <script>boids.hello.hello_world()</script>
+  </body>
+</html>
