@@ -19,26 +19,6 @@
 
   (limit [this scalar] "A vector of the same direction with an equal or lesser magnitude than the scalar provided"))
 
-;; (extend-protocol EuclideanVector
-;;   cljs.core.PersistentVector
-;;   (add [this vector]
-;;     (mapv + this vector))
-;;   (sub [this vector]
-;;     (mapv - this vector))
-;;   (mul [this scalar]
-;;     (mapv #(* % scalar) this))
-;;   (div [this scalar]
-;;     (mapv #(/ % scalar) this))
-;;   (magnitude [this]
-;;     ())
-;;   (distance [this vector]
-;;     ())
-;;   (scale [this scalar]
-;;     ())
-;;   (limit [this scalar]
-;;     ()))
-
-
 (extend-protocol EuclideanVector
   cljs.core.PersistentVector
   (add [this vector]
