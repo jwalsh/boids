@@ -13,9 +13,14 @@
     (.beginPath ctx)
     (set! (.-strokeStyle ctx) color)
     (set! (.-fillStyle ctx) color)
-    (.fillText ctx (.fromCharCode js/String 9992) 5 0) 
+    (set! (.-font ctx) "30pt Calibri")
+    (set! (.-textBaseline ctx) "bottom")
+    (.fillText ctx (.fromCharCode js/String 9992) -25 25) 
+    (.moveTo ctx 5 0) ; tip
+    (.lineTo ctx -5 -3) ; corner
+    (.lineTo ctx -5 3)  ; corner
+    (.lineTo ctx 5 0) ; finish
     (set! (.-lineWidth ctx) 1)
-
     (.stroke ctx)
     (.restore ctx)))
 
