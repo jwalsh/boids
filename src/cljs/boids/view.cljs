@@ -35,14 +35,15 @@
 (defn init-mouse
   "Follow the mouse"
   [options-atom]
-  (.console.log js/window options-atom)
+  ;;  (.console.log js/window options-atom)
   (.on (js/jQuery "body")
        "mousemove"
        (fn [evt]
-         (.console.log js/window
-                       (.-clientX evt))
+         ;; (.console.log js/window
+         ;;               (.-clientX evt)
+         ;;               (.-clientY evt))
          (swap! options-atom assoc :goal [(.-clientX evt)
-                                          200]))))
+                                          (.-clientY evt)]))))
 
 (defn log-mouse
   "Log the mouse"

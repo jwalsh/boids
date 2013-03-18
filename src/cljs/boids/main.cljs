@@ -17,13 +17,13 @@
           [0 0 0]
           (rand-nth colors)))
 
-(def default-options  {:steer-force      0.1
+(def default-options  {:steer-force      0.5
                        :max-speed        8
                        :cohere-distance  300
-                       :avoid-distance   50
+                       :avoid-distance   44
                        :align-distance   200
                        :cohesion-weight  1
-                       :avoidance-weight 1
+                       :avoidance-weight 2
                        :alignment-weight 1
                        :goal-weight      2
                        :goal             [400 400]})

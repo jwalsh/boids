@@ -14,7 +14,12 @@
   :cljsbuild
   {
    :builds
-   [{
+   [
+    { :source-paths ["src/cljs"]
+     :compiler {:optimizations :advanced
+                :externs ["resources/public/lib/jquery-externs.js"]
+                :output-to "resources/public/build/advanced.js"} }
+    {
      :source-paths ["src/cljs"]
      :compiler
      {
