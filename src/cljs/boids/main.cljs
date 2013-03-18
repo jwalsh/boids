@@ -17,8 +17,8 @@
           [0 0 0]
           (rand-nth colors)))
 
-(def default-options  {:steer-force      0.5
-                       :max-speed        5
+(def default-options  {:steer-force      0.1
+                       :max-speed        8
                        :cohere-distance  300
                        :avoid-distance   50
                        :align-distance   200
@@ -91,6 +91,6 @@
   (let [options-atom (atom default-options)
         flock-atom (atom (repeatedly 15 create-boid))]
     ;;     (.console.log js/window "main.main")
-    (view/log-mouse)
+    ;;    (view/log-mouse)
     (view/init flock-atom options-atom)
     (tick options-atom flock-atom)))
