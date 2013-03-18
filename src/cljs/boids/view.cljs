@@ -32,9 +32,31 @@
     (doseq [boid flock]
       (render-boid ctx boid))))
 
+(defn init-mouse
+  "Follow the mouse"
+  [options-atom]
+  (.console.log js/window options-atom)
+  (.on (js/jQuery "body")
+       "mousemove"
+       (fn [evt]
+         (.console.log js/window
+                       (.-clientX evt))
+         (swap! options-atom assoc :goal [(.-clientX evt)
+                                          200]))))
+
+(defn log-mouse
+  "Log the mouse"
+  []
+  (.on (js/jQuery "body")
+       "mousemove"
+       (fn [evt]
+         (.console.log js/window [(.-clientX evt)
+                                  (.-clientY evt)]))))
+
 (defn init
   "Given an atom containing a seq of boids, initialize the view"
-  [flock-atom]
+  [flock-atom options-atom]
+  (init-mouse options-atom)
   (let [canvas (js/jQuery "<canvas>")]
     (-> canvas
         (.attr "width" (.-innerWidth js/window))
