@@ -12,12 +12,13 @@
   []
   ;;  (.console.log js/window (rand-nth colors))  
   (->Boid [(rand-int (.-innerWidth js/window))
-           (rand-int (.-innerHeight js/window))]
-          [0 0]
+           (rand-int (.-innerHeight js/window))
+           0]
+          [0 0 0]
           (rand-nth colors)))
 
-(def default-options  {:steer-force      0.1
-                       :max-speed        10
+(def default-options  {:steer-force      0.5
+                       :max-speed        5
                        :cohere-distance  300
                        :avoid-distance   50
                        :align-distance   200
@@ -84,11 +85,12 @@
   (swap! flock-atom (partial update-flock @options-atom))
   (requestAnimationFrame #(tick options-atom flock-atom)))
 
-(defn main
+(defn ^:export main
   "Starts everything"
   []
   (let [options-atom (atom default-options)
         flock-atom (atom (repeatedly 15 create-boid))]
-    (view/init flock-atom)
+    ;;     (.console.log js/window "main.main")
+    (view/log-mouse)
+    (view/init flock-atom options-atom)
     (tick options-atom flock-atom)))
-
